@@ -70,9 +70,15 @@ public class adanota extends BaseAdapter implements  OnClickListener {
         	    	public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
         	    	   
         						try{
+        							
         							helper helper = OpenHelperManager.getHelper(context,helper.class);
             						RuntimeExceptionDao<notas, String> notassDao = helper.getNotasRuntimeDao();
-            						entry.setNota(Double.parseDouble(tvPhone2.getText().toString()));
+            						if("".equalsIgnoreCase(tvPhone2.getText().toString())){
+            							entry.setNota(-1.0);
+            						}else{
+            							entry.setNota(Double.parseDouble(tvPhone2.getText().toString()));
+            						}
+            						
         							notassDao.update(entry);
         						}catch(Exception e){
         							Toast.makeText(context,e.getMessage() , Toast.LENGTH_SHORT).show();
