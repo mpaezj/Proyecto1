@@ -75,6 +75,15 @@ public class trajenota extends Fragment {
 						.commit();
 			}
 		});
+		
+		botoncalcular.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				
+				
+			}
+		});
 
 	
 		return rootView;

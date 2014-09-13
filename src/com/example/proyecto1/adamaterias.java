@@ -76,6 +76,9 @@ public class adamaterias extends BaseAdapter implements  OnClickListener {
 	     notifyDataSetChanged();
 	     helper helper= OpenHelperManager.getHelper(context,helper.class);
 		 RuntimeExceptionDao<materias, String> materiasDao = helper.getMateriaRuntimeDao();
+		 RuntimeExceptionDao<notas, String> notasDao = helper.getNotasRuntimeDao();
+		 List<notas> nts =notasDao.queryForEq("nombremateria_id", entry);
+		 notasDao.delete(nts);
 		 materiasDao.delete(entry);
 	     
 
