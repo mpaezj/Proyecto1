@@ -30,7 +30,7 @@ public class trajenota extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.notas, container, false);
+		final View rootView = inflater.inflate(R.layout.notas, container, false);
 		
 		botonagregar = (Button) rootView.findViewById(R.id.button1);
 		botoncalcular = (Button) rootView.findViewById(R.id.button2);
@@ -83,6 +83,7 @@ public class trajenota extends Fragment {
 			
 			@Override
 			public void onClick(View v) {
+				try{
 				pronota pronota = new pronota();
 				Bundle args = new Bundle();
 				args.putString("nombre", getArguments().getString("nombre"));
@@ -95,6 +96,9 @@ public class trajenota extends Fragment {
 						.getSupportFragmentManager().beginTransaction();
 				ft.replace(R.id.container, pronota).addToBackStack("pronota")
 						.commit();
+				}catch(Exception e){
+					Toast.makeText(rootView.getContext(), "Todos los campos deben estar llenos", Toast.LENGTH_SHORT).show();
+				}
 				
 			}
 		});

@@ -8,7 +8,10 @@ import java.util.List;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.RuntimeExceptionDao;
 
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
@@ -30,16 +33,32 @@ public class inicio extends Fragment {
 	private EditText dee;
 	private EditText dee2;
 	private EditText dee3;
+	private SharedPreferences mSharedPreferences;
+	private String skey = "PREF_CHECKBOX_STRING";
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		final View rootView = inflater.inflate(R.layout.inicial, container, false);
 		
-		//----
 		dee=(EditText) rootView.findViewById(R.id.editText3);
 		dee2=(EditText) rootView.findViewById(R.id.editText2);
 		dee3=(EditText) rootView.findViewById(R.id.editText1);
+		
+		mSharedPreferences = PreferenceManager
+				.getDefaultSharedPreferences(rootView.getContext());
+		String text = mSharedPreferences.getString("deseado", "");
+		dee.setText(text);
+		String text2 = mSharedPreferences.getString("actual", "");
+		dee2.setText(text2);
+		String text3 = mSharedPreferences.getString("creditos", "");
+		dee3.setText(text3);
+		
+		
+		
+		//----
+		
+		
 		
 		 botonagregar = (Button) rootView.findViewById(R.id.button1);
 		 botoncalcular = (Button) rootView.findViewById(R.id.button2);
@@ -91,6 +110,18 @@ public class inicio extends Fragment {
 			
 			@Override
 			public void onClick(View v) {
+				
+				SharedPreferences sharedPreferences = PreferenceManager
+						.getDefaultSharedPreferences(rootView.getContext());
+				Editor editor = sharedPreferences.edit();
+				editor.putString("deseado", dee.getText().toString());
+				editor.putString("actual", dee2.getText().toString());
+				editor.putString("creditos", dee3.getText().toString());
+				
+				editor.commit();
+				//Log.d("setOnClickListener","click");
+				
+				
 				try{
 				prosemestre prosemestre = new prosemestre();
 				Bundle args = new Bundle();

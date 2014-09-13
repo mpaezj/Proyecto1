@@ -45,8 +45,11 @@ public class prosemestre extends Fragment {
 		for (materias notas : materias) {
 			if(notas.getNota()==-1.0){
 				notas.setNota(de);
+				esta.add(notas.getNombre()+" - "+notas.getNota());
+			}else{
+				esta.add(notas.getNombre()+" - "+notas.getNota()+"*");
 			}
-			esta.add(notas.getNombre()+" - "+notas.getNota());
+			
 		}
 		ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
                 rootView.getContext(),
