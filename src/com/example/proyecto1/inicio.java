@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
@@ -26,6 +27,9 @@ public class inicio extends Fragment {
 	private Button botoncalcular;
 	private agregarmateria agregarmateria;
 	List<materias> listmat;
+	private EditText dee;
+	private EditText dee2;
+	private EditText dee3;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -33,12 +37,15 @@ public class inicio extends Fragment {
 		final View rootView = inflater.inflate(R.layout.inicial, container, false);
 		
 		//----
+		dee=(EditText) rootView.findViewById(R.id.editText3);
+		dee2=(EditText) rootView.findViewById(R.id.editText2);
+		dee3=(EditText) rootView.findViewById(R.id.editText1);
 		
 		 botonagregar = (Button) rootView.findViewById(R.id.button1);
 		 botoncalcular = (Button) rootView.findViewById(R.id.button2);
 
 		ListView list = (ListView) rootView.findViewById(R.id.listView1);
-		list.setClickable(true);
+		
 		
 		helper helper= OpenHelperManager.getHelper(rootView.getContext(),helper.class);
 		RuntimeExceptionDao<materias, String> materiasDao = helper.getMateriaRuntimeDao();
@@ -48,8 +55,7 @@ public class inicio extends Fragment {
 		adamaterias ada = new adamaterias(rootView.getContext(), listmat);
 		list.setAdapter(ada);
 		
-		
-		
+		list.setClickable(true);
 		list.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View view,
@@ -78,6 +84,30 @@ public class inicio extends Fragment {
 						.getSupportFragmentManager().beginTransaction();
 				ft.replace(R.id.container, agregarmateria).addToBackStack("agregarmateria")
 						.commit();
+			}
+		});
+		
+		botoncalcular.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				try{
+				prosemestre prosemestre = new prosemestre();
+				Bundle args = new Bundle();
+				args.putDouble("creditos", Double.parseDouble(dee3.getText().toString()));
+				args.putDouble("deseada", Double.parseDouble(dee.getText().toString()));
+				args.putDouble("actual", Double.parseDouble(dee2.getText().toString()));
+				
+				
+				prosemestre.setArguments(args);
+				FragmentTransaction ft = getActivity()
+						.getSupportFragmentManager().beginTransaction();
+				ft.replace(R.id.container, prosemestre).addToBackStack("prosemestre")
+						.commit();
+				}catch(Exception e){
+					Toast.makeText(rootView.getContext(), "Todos los campos deben estar llenos", Toast.LENGTH_SHORT).show();
+				}
+						
 			}
 		});
 		return rootView;
