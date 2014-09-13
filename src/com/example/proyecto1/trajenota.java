@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -23,6 +24,7 @@ public class trajenota extends Fragment {
 	private Button botonagregar ;
 	private Button botoncalcular;
 	private agregarnota agregarnota;
+	private EditText tx;
 	List<notas> listnot;
 
 	@Override
@@ -32,6 +34,7 @@ public class trajenota extends Fragment {
 		
 		botonagregar = (Button) rootView.findViewById(R.id.button1);
 		botoncalcular = (Button) rootView.findViewById(R.id.button2);
+		tx = (EditText) rootView.findViewById(R.id.editText3);
 
 		ListView list = (ListView) rootView.findViewById(R.id.listView1);
 		list.setClickable(true);
@@ -80,7 +83,18 @@ public class trajenota extends Fragment {
 			
 			@Override
 			public void onClick(View v) {
-				
+				pronota pronota = new pronota();
+				Bundle args = new Bundle();
+				args.putString("nombre", getArguments().getString("nombre"));
+				args.putInt("creditos",getArguments().getInt("credtios"));
+				args.putDouble("nota", getArguments().getDouble("nota"));
+				args.putDouble("deseada", Double.parseDouble(tx.getText().toString()));
+				 
+				pronota.setArguments(args);
+				FragmentTransaction ft = getActivity()
+						.getSupportFragmentManager().beginTransaction();
+				ft.replace(R.id.container, pronota).addToBackStack("pronota")
+						.commit();
 				
 			}
 		});
