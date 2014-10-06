@@ -42,14 +42,24 @@ public class prosemestre extends Fragment {
 		}
 		double de = ((deseada*(cre+nocre+creditos))-snocre-actual*creditos)/cre;
 		List<String> esta = new ArrayList<String>();
+		boolean sw=true;
+		boolean sw2=true;
 		for (materias notas : materias) {
+			sw=false;
 			if(notas.getNota()==-1.0){
+				sw2=false;
 				notas.setNota(de);
 				esta.add(notas.getNombre()+" - "+Math.round(notas.getNota()*100.0)/100.0);
 			}else{
 				esta.add(notas.getNombre()+" - "+Math.round(notas.getNota()*100.0)/100.0+"*");
 			}
 			
+		}
+		if(sw){
+			esta.add("No hay materias matriculadas");		
+		}
+		if(sw2){
+			esta.add("No hay ninguna materia editable");		
 		}
 		ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
                 rootView.getContext(),

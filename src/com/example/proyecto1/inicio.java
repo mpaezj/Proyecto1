@@ -111,17 +111,14 @@ public class inicio extends Fragment {
 			@Override
 			public void onClick(View v) {
 				
+				
 				SharedPreferences sharedPreferences = PreferenceManager
 						.getDefaultSharedPreferences(rootView.getContext());
 				Editor editor = sharedPreferences.edit();
 				editor.putString("deseado", dee.getText().toString());
 				editor.putString("actual", dee2.getText().toString());
 				editor.putString("creditos", dee3.getText().toString());
-				
 				editor.commit();
-				//Log.d("setOnClickListener","click");
-				
-				
 				try{
 				prosemestre prosemestre = new prosemestre();
 				Bundle args = new Bundle();

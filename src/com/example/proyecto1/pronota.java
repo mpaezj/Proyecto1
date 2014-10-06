@@ -50,13 +50,23 @@ public class pronota extends Fragment {
 		//Toast.makeText(rootView.getContext(),deseado+"", Toast.LENGTH_SHORT).show();
 		double de = ((deseado*(cre+nocre))-snocre)/cre;
 		List<String> esta = new ArrayList<String>();
+		boolean sw = true;
+		boolean sw2 = true;
 		for (notas notas : listnot) {
+			sw=false;
 			if(notas.getNota()==-1.0){
+				sw2 = false;
 				notas.setNota(de);
 				esta.add(notas.getNombre()+" - "+Math.round(notas.getNota()*100.0)/100.0);
 			}else{
 				esta.add(notas.getNombre()+" - "+Math.round(notas.getNota()*100.0)/100.0+"*");
 			}
+		}
+		if(sw){
+			esta.add("No hay evaluciones registradas");
+		}
+		if(sw2){
+			esta.add("No hay ninguna evaluacion editable");
 		}
 		ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
                 rootView.getContext(),
