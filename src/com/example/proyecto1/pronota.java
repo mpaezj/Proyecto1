@@ -1,5 +1,6 @@
 package com.example.proyecto1;
 
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,9 +53,9 @@ public class pronota extends Fragment {
 		for (notas notas : listnot) {
 			if(notas.getNota()==-1.0){
 				notas.setNota(de);
-				esta.add(notas.getNombre()+" - "+notas.getNota());
+				esta.add(notas.getNombre()+" - "+Math.round(notas.getNota()*100.0)/100.0);
 			}else{
-				esta.add(notas.getNombre()+" - "+notas.getNota()+"*");
+				esta.add(notas.getNombre()+" - "+Math.round(notas.getNota()*100.0)/100.0+"*");
 			}
 		}
 		ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(

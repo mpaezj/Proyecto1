@@ -45,9 +45,9 @@ public class prosemestre extends Fragment {
 		for (materias notas : materias) {
 			if(notas.getNota()==-1.0){
 				notas.setNota(de);
-				esta.add(notas.getNombre()+" - "+notas.getNota());
+				esta.add(notas.getNombre()+" - "+Math.round(notas.getNota()*100.0)/100.0);
 			}else{
-				esta.add(notas.getNombre()+" - "+notas.getNota()+"*");
+				esta.add(notas.getNombre()+" - "+Math.round(notas.getNota()*100.0)/100.0+"*");
 			}
 			
 		}
