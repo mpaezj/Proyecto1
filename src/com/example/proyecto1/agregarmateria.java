@@ -49,6 +49,7 @@ public class agregarmateria extends Fragment {
 						materias materia = new materias(snombre,Integer.parseInt(screditos));
 						materiasDao.create(materia);
 						Toast.makeText(rootView.getContext(),"Materia agregada exitosamente" , Toast.LENGTH_SHORT).show();
+						getActivity().getSupportFragmentManager().popBackStack();
 
 					}
 					catch (NumberFormatException e) {

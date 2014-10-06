@@ -51,6 +51,7 @@ public class agregarnota extends Fragment {
 						notas nota = new notas(materia ,snombre, Integer.parseInt(screditos));
 						notassDao.create(nota);
 						Toast.makeText(rootView.getContext(),"Nota agregada exitosamente" , Toast.LENGTH_SHORT).show();
+						getActivity().getSupportFragmentManager().popBackStack();
 
 					}
 					catch (NumberFormatException e) {

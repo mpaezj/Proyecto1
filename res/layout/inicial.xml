@@ -9,7 +9,7 @@
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Materias"
+        android:text="Materias Actuales"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <ListView
@@ -27,7 +27,7 @@
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Agregar" />
+        android:text="Agregar Materias" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -93,6 +93,6 @@
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Calcular" />
+        android:text="Calcular notas requeridas" />
 
 </LinearLayout>
